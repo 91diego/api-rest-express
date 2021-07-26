@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// DB CON
+const sequelize = require('./database/database');
+
 var router = require('./routes/api/routes');
 
 var app = express();
@@ -36,5 +39,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+sequelize.authenticate().then(() => {
+  console.log('Successful conection!');
+}).catch(error => {
+  console.log(`An error has ocurred with database conection.... ${error}`);
+})
 
 module.exports = app;
