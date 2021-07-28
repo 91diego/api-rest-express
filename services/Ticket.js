@@ -57,6 +57,24 @@ class Ticket {
             'message': message,
             'items': products
         }
+
+        try {
+            // console.log(products['items'][2]);
+            let result = products['items'].filter((item, index) => {
+                // console.log(products['items'][index]);
+                // console.log(products.items[index].product === item.product);
+                // console.log(item.product);
+                return products.items[index].product === item.product;
+            });
+            console.log(result);
+        } catch (error) {
+            console.log(error);   
+        }
+        /*Post.findAll({
+            where: {
+              id: [1,2,3] // Same as using `id: { [Op.in]: [1,2,3] }`
+            }
+        });*/
         return response;
     }
 }
